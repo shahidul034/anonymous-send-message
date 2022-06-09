@@ -1,0 +1,85 @@
+{% extends 'base.html' %}
+{% block title %}
+Home
+{% endblock title %}
+{% block body %}
+
+
+<div class="container mb-3">
+    <form action="/" method="POST">
+
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="username" id="username" placeholder="username">
+            <label for="floatingInput">Enter your anonymous username</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="text" class="form-control" name="teacher_name" id="teacher_name" placeholder="teacher_name">
+            <label for="floatingInput">Enter your teacher name</label>
+        </div>
+        <div class="form-floating mb-3">
+            <textarea class="form-control" id="exampleFormControlTextarea1" placeholder="message" rows="3" name="message" id="message"></textarea>
+            <label for="floatingInput">Enter your message for your teacher</label>
+        </div>
+        <button type="submit" class="btn btn-dark" value="submit" name="submit">Submit</button>
+        <button type="delete" class="btn btn-dark" value="delete" name="delete">Delete</button>
+        <button type="delete" class="btn btn-dark" value="show" name="show">Show</button>
+        <button type="delete" class="btn btn-dark" value="clear" name="clear">Clear</button>
+        <button type="delete" class="btn btn-dark" value="show_all_the_msg" name="show_all_the_msg">Show all the message</button>
+    </form>
+</div>
+
+<div class="container mb-3">
+    {% if admin=="admin" %}
+    <div class="alert alert-success" role="alert">
+        All the message
+      </div>
+    {%for i in (userdata)%}
+    <table class="table table-bordered table-dark table-hover">
+        <tr>
+            <td>{{i.username}}</td>
+            <td>{{i.teacher_name}}</td>
+            <td>{{i.comment}}</td>
+        </tr>
+    </table>
+    {%endfor%}
+    {%endif%}
+
+</div>
+
+
+<div class="container mb-3">
+    {% if result!=""  and admin==""%}
+    {%for i in (comment)%}
+    <table class="table table-bordered table-dark table-hover">
+        <tr>
+            <td>{{username}}</td>
+            <td>{{i.teacher_name}}</td>
+            <td>{{i.comment}}</td>
+        </tr>
+    </table>
+    {%endfor%}
+    {%endif%}
+
+</div>
+<div class="container mb-3">
+    {% if admin=="clear"%}
+    <div class="alert alert-success" role="alert">
+        Delete message successfully
+      </div>
+    {%endif%}
+
+</div>
+
+<!-- Optional JavaScript; choose one of the two! -->
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+    crossorigin="anonymous"></script>
+
+<!-- Option 2: Separate Popper and Bootstrap JS -->
+<!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
+    -->
+{% endblock body %}
